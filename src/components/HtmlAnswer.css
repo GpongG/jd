@@ -1,0 +1,57 @@
+.html-answer p {
+  display: block;
+  margin: 0.65em 0;
+}
+
+.html-answer p:first-child {
+  margin-top: 0;
+}
+
+.html-answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Quill 空行 */
+.html-answer p:empty,
+.html-answer p:has(> br:only-child) {
+  min-height: 1.4em;
+}
+
+.html-answer ul,
+.html-answer ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.html-answer li {
+  margin: 0.25rem 0;
+}
+
+.html-answer pre {
+  margin: 0.75rem 0;
+}
+
+.html-answer code {
+  background: rgba(108, 158, 255, 0.1);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.html-answer blockquote {
+  margin: 0.75rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--text-muted);
+}
+
+.html-answer a {
+  color: var(--accent);
+}
+
+.html-answer h1,
+.html-answer h2,
+.html-answer h3 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 600;
+}

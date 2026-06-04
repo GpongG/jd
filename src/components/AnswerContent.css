@@ -1,0 +1,55 @@
+.answer-content {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.answer-para {
+  margin: 0 0 0.85rem;
+}
+
+.answer-heading {
+  margin: 1rem 0 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.answer-list {
+  margin: 0 0 0.85rem;
+  padding-left: 1.35rem;
+}
+
+.answer-list li {
+  margin: 0.35rem 0;
+}
+
+.inline-code {
+  background: #0a0c10;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+  color: var(--green);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table-wrap th,
+.table-wrap td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.table-wrap th {
+  background: var(--bg-elevated);
+}

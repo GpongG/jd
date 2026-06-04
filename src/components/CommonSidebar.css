@@ -1,0 +1,125 @@
+.common-sidebar-actions {
+  padding: 0 0.5rem 0.75rem;
+}
+
+.sidebar-action-btn {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sidebar-action-btn:hover {
+  background: rgba(108, 158, 255, 0.2);
+}
+
+.common-cat-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.15rem;
+}
+
+.common-cat-row .sidebar-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.common-cat-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.common-cat-row:hover .common-cat-tools {
+  opacity: 1;
+}
+
+.cat-tool-btn {
+  width: 1.6rem;
+  padding: 0.15rem;
+  font-size: 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.cat-tool-btn:hover {
+  color: var(--text);
+}
+
+.cat-tool-btn--danger:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.common-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.common-toolbar h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.btn-add-question {
+  padding: 0.5rem 1rem;
+  background: var(--green);
+  color: #0c0e14;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-add-question:hover {
+  filter: brightness(1.06);
+}
+
+.btn-add-question:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.question-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1.25rem 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: -0.25rem;
+}
+
+.card-action-btn {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.card-action-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.card-action-btn--danger:hover {
+  color: var(--red);
+  border-color: var(--red);
+}

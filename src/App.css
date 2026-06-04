@@ -1,0 +1,100 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.5rem 3rem;
+  gap: 2rem;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px dashed var(--border);
+}
+
+.empty button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+}
+
+.app--violet .sidebar-item.active {
+  background: var(--accent-violet-soft);
+  color: var(--accent-violet);
+}
+
+.app--violet .search-input-wrap:focus-within {
+  border-color: var(--accent-violet);
+  box-shadow: 0 0 0 3px var(--accent-violet-soft);
+}
+
+.app--violet .diff-btn.active {
+  background: var(--accent-violet-soft);
+  border-color: var(--accent-violet);
+  color: var(--accent-violet);
+}
+
+.app--violet .question-card.expanded {
+  border-color: var(--accent-violet);
+}
+
+.app--violet .cat-tag {
+  color: var(--accent-violet);
+  background: var(--accent-violet-soft);
+}
+
+.app--violet .chevron {
+  color: var(--accent-violet);
+}
+
+.app--violet .key-points {
+  background: var(--accent-violet-soft);
+  border-left-color: var(--accent-violet);
+}
+
+.common-layout {
+  padding-top: 0.5rem;
+}
+
+.app--violet .view-tab.active {
+  color: #1a1033;
+}
+
+.app--violet .empty button {
+  background: var(--accent-violet-soft);
+  color: var(--accent-violet);
+  border-color: var(--accent-violet);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    padding: 0 1rem 2rem;
+  }
+}

@@ -1,0 +1,34 @@
+.view-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.view-tab {
+  padding: 0.5rem 1.1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.view-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.view-tab.active {
+  background: #fff;
+  color: #0c0e14;
+  border-color: #fff;
+}
+
+.header--violet .view-tab.active {
+  background: #fff;
+  color: #1a1033;
+}

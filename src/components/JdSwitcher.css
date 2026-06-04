@@ -1,0 +1,69 @@
+.jd-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.jd-tab {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text-muted);
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.jd-tab:hover {
+  border-color: #3a4560;
+  color: var(--text);
+}
+
+.jd-tab.active {
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.jd-tab--blue.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.jd-tab--violet.active {
+  border-color: var(--accent-violet);
+  background: var(--accent-violet-soft);
+}
+
+.jd-tab-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.jd-tab-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.jd-tab-badge {
+  opacity: 0.85;
+}
+
+.jd-tab-count {
+  font-weight: 600;
+}
+
+.jd-tab--blue.active .jd-tab-count {
+  color: var(--accent);
+}
+
+.jd-tab--violet.active .jd-tab-count {
+  color: var(--accent-violet);
+}
