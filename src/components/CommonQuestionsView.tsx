@@ -13,10 +13,89 @@ import {
   CommonQuestionEditModal,
   type CommonQuestionPayload,
 } from "./CommonQuestionEditModal";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  useSortable,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import "../App.css";
 
 function normalize(s: string) {
   return s.toLowerCase().trim();
+}
+
+function SortableQuestionItem({
+  question,
+  categories,
+  index,
+  expanded,
+  onToggle,
+  onEdit,
+  onDelete,
+}: {
+  question: CommonQuestion;
+  categories: { id: string; jdId: "h5-senior"; name: string; description: string; icon: string }[];
+  index: number;
+  expanded: boolean;
+  onToggle: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
+}) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: question.id });
+
+  const style: React.CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+    position: "relative",
+    zIndex: isDragging ? 100 : undefined,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes}>
+      <div className="sortable-question-wrap">
+        <div className="drag-handle" {...listeners} title="拖拽排序">
+          ⠿
+        </div>
+        <QuestionCard
+          question={{
+            id: question.id,
+            jdId: "h5-senior",
+            category: question.category,
+            title: question.title,
+            difficulty: question.difficulty,
+            tags: question.tags,
+            answer: "",
+            answerHtml: question.answerHtml,
+            keyPoints: question.keyPoints,
+          }}
+          categories={categories}
+          index={index}
+          expanded={expanded}
+          onToggle={onToggle}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      </div>
+    </div>
+  );
 }
 
 interface CommonQuestionsViewProps {
@@ -186,6 +265,40 @@ export function CommonQuestionsView({ onCountChange }: CommonQuestionsViewProps)
     if (expandedId === q.id) setExpandedId(null);
   };
 
+  const questionSensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
+  );
+
+  const handleDragEndQuestions = useCallback(
+    (event: DragEndEvent) => {
+      const { active, over } = event;
+      if (!over || active.id === over.id) return;
+
+      const oldIndex = filtered.findIndex((q) => q.id === active.id);
+      const newIndex = filtered.findIndex((q) => q.id === over.id);
+      if (oldIndex === -1 || newIndex === -1) return;
+
+      const reorderedFiltered = arrayMove(filtered, oldIndex, newIndex);
+
+      // 将重新排序后的 filtered 子集映射回完整 questions 数组
+      const filteredIds = new Set(filtered.map((q) => q.id));
+      let fi = 0;
+      const newQuestions = bank.questions.map((q) =>
+        filteredIds.has(q.id) ? reorderedFiltered[fi++] : q
+      );
+
+      persist({ ...bank, questions: newQuestions });
+    },
+    [filtered, bank, persist]
+  );
+
+  const handleReorderCategories = useCallback(
+    (reordered: CommonCategory[]) => {
+      persist({ ...bank, categories: reordered });
+    },
+    [bank, persist]
+  );
+
   return (
     <div className="layout common-layout">
       <CommonSidebar
@@ -196,6 +309,7 @@ export function CommonQuestionsView({ onCountChange }: CommonQuestionsViewProps)
         onAddCategory={() => setEditingCategory("new")}
         onEditCategory={(cat) => setEditingCategory(cat)}
         onDeleteCategory={handleDeleteCategory}
+        onReorderCategories={handleReorderCategories}
       />
       <main className="main">
         <div className="common-toolbar">
@@ -243,30 +357,31 @@ export function CommonQuestionsView({ onCountChange }: CommonQuestionsViewProps)
               )}
             </div>
           ) : (
-            filtered.map((q, i) => (
-              <QuestionCard
-                key={q.id}
-                question={{
-                  id: q.id,
-                  jdId: "h5-senior",
-                  category: q.category,
-                  title: q.title,
-                  difficulty: q.difficulty,
-                  tags: q.tags,
-                  answer: "",
-                  answerHtml: q.answerHtml,
-                  keyPoints: q.keyPoints,
-                }}
-                categories={sidebarCategories}
-                index={i + 1}
-                expanded={expandedId === q.id}
-                onToggle={() =>
-                  setExpandedId((prev) => (prev === q.id ? null : q.id))
-                }
-                onEdit={() => setEditingQuestion(q)}
-                onDelete={() => handleDeleteQuestion(q)}
-              />
-            ))
+            <DndContext
+              sensors={questionSensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEndQuestions}
+            >
+              <SortableContext
+                items={filtered.map((q) => q.id)}
+                strategy={verticalListSortingStrategy}
+              >
+                {filtered.map((q, i) => (
+                  <SortableQuestionItem
+                    key={q.id}
+                    question={q}
+                    categories={sidebarCategories}
+                    index={i + 1}
+                    expanded={expandedId === q.id}
+                    onToggle={() =>
+                      setExpandedId((prev) => (prev === q.id ? null : q.id))
+                    }
+                    onEdit={() => setEditingQuestion(q)}
+                    onDelete={() => handleDeleteQuestion(q)}
+                  />
+                ))}
+              </SortableContext>
+            </DndContext>
           )}
         </div>
       </main>

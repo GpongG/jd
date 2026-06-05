@@ -1,3 +1,36 @@
+/* ---- 分类拖拽手柄 ---- */
+.cat-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  cursor: grab;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.common-cat-row:hover .cat-drag-handle {
+  opacity: 0.6;
+}
+
+.cat-drag-handle:hover {
+  opacity: 1 !important;
+  color: var(--accent);
+}
+
+.cat-drag-handle:active {
+  cursor: grabbing;
+}
+
+.common-cat-row.dragging {
+  background: var(--bg-hover);
+  border-radius: 10px;
+}
+
 .common-sidebar-actions {
   padding: 0 0.5rem 0.75rem;
 }
@@ -59,6 +92,49 @@
 .cat-tool-btn--danger:hover {
   color: var(--red);
   border-color: var(--red);
+}
+
+/* ---- 题目拖拽排序 ---- */
+.sortable-question-wrap {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+}
+
+.sortable-question-wrap .question-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  min-height: 100%;
+  cursor: grab;
+  color: var(--text-muted);
+  font-size: 1rem;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  flex-shrink: 0;
+  border-radius: var(--radius) 0 0 var(--radius);
+  background: transparent;
+}
+
+.sortable-question-wrap:hover .drag-handle {
+  opacity: 0.5;
+}
+
+.drag-handle:hover {
+  opacity: 1 !important;
+  color: var(--accent);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
 }
 
 .common-toolbar {
