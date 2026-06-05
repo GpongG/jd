@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Category, Difficulty, Question } from "../types";
-import { normalizeAnswerHtml } from "../utils/htmlAnswer";
+import { normalizeAnswerHtml, stripQuillUi } from "../utils/htmlAnswer";
 import { markdownToHtml } from "../utils/markdownToHtml";
 import { RichTextEditor } from "./RichTextEditor";
 import "./Modal.css";
@@ -40,7 +40,7 @@ export function QuestionEditModal({
 
   useEffect(() => {
     if (question.answerHtml) {
-      setAnswerHtml(question.answerHtml);
+      setAnswerHtml(stripQuillUi(question.answerHtml));
     } else if (question.answer) {
       setAnswerHtml(markdownToHtml(question.answer));
     } else {
@@ -165,7 +165,8 @@ export function QuestionEditModal({
             <div className="form-field">
               <label>参考答案（富文本）</label>
               <RichTextEditor
-                value={answerHtml}
+                key={question.id}
+                defaultValue={answerHtml}
                 onChange={setAnswerHtml}
                 minHeight={280}
                 placeholder="编写详细解析…"

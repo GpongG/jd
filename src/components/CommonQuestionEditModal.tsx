@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { CommonCategory, CommonQuestion, Difficulty } from "../types";
-import { normalizeAnswerHtml } from "../utils/htmlAnswer";
+import { normalizeAnswerHtml, stripQuillUi } from "../utils/htmlAnswer";
 import { RichTextEditor } from "./RichTextEditor";
 import "./Modal.css";
 
@@ -32,7 +32,7 @@ export function CommonQuestionEditModal({
 }: CommonQuestionEditModalProps) {
   const [title, setTitle] = useState(question?.title ?? "");
   const [answerHtml, setAnswerHtml] = useState(
-    question?.answerHtml ?? "<p></p>"
+    stripQuillUi(question?.answerHtml ?? "<p></p>")
   );
   const [keyPoints, setKeyPoints] = useState<string[]>(
     question?.keyPoints?.length ? [...question.keyPoints] : [""]
@@ -168,7 +168,8 @@ export function CommonQuestionEditModal({
                 <div className="form-field">
                   <label>答案（富文本）</label>
                   <RichTextEditor
-                    value={answerHtml}
+                    key={question?.id ?? "new"}
+                    defaultValue={answerHtml}
                     onChange={setAnswerHtml}
                     minHeight={280}
                   />

@@ -69,3 +69,58 @@
 .rich-text-editor .ql-snow .ql-active .ql-fill {
   fill: var(--accent);
 }
+
+/* 代码块语言选择器 — 透明不可见，右上角指示点 */
+.rich-text-editor .ql-editor .ql-code-block-container {
+  position: relative;
+}
+
+.rich-text-editor .ql-editor .ql-code-block-container::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--text-muted, #999);
+  opacity: 0.2;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.rich-text-editor .ql-editor .ql-code-block-container:hover::before {
+  opacity: 0.45;
+}
+
+.rich-text-editor .ql-editor .ql-code-block-container select.ql-ui {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  left: auto !important;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  opacity: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  appearance: auto;
+  -webkit-appearance: auto;
+}
+
+.rich-text-editor .ql-editor .ql-code-block-container select.ql-ui:hover {
+  opacity: 0;
+}
+
+.rich-text-editor .ql-editor .ql-code-block-container select.ql-ui:focus {
+  opacity: 0;
+  outline: none;
+}

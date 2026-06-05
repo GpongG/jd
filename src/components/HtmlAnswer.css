@@ -27,14 +27,56 @@
   margin: 0.25rem 0;
 }
 
-.html-answer pre {
+.html-answer pre,
+.html-answer .ql-code-block-container {
   margin: 0.75rem 0;
+  background: #0a0c10;
+  color: #e0e0e0;
+  padding: 0.85rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  position: relative;
+}
+
+/* 代码块右上角语言标签 */
+.html-answer .ql-code-block-container[data-language]::after,
+.html-answer pre[data-language]::after {
+  content: attr(data-language);
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  font-family: inherit;
+}
+
+.html-answer .ql-code-block {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.html-answer pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: inherit;
 }
 
 .html-answer code {
   background: rgba(108, 158, 255, 0.1);
   padding: 0.15em 0.4em;
   border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, monospace;
+  font-size: 0.88em;
 }
 
 .html-answer blockquote {
