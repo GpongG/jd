@@ -90,10 +90,20 @@
   color: var(--accent);
 }
 
-.html-answer h1,
-.html-answer h2,
+.html-answer h1 {
+  margin: 1rem 0 0.35rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.html-answer h2 {
+  margin: 0.85rem 0 0.35rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
 .html-answer h3 {
   margin: 0.75rem 0 0.35rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
 }
