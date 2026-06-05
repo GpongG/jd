@@ -1,6 +1,7 @@
 import type { AppView, JdId, JobProfile } from "../types";
 import { JdSwitcher } from "./JdSwitcher";
 import { ViewTabs } from "./ViewTabs";
+import { DataManager } from "./DataManager";
 import "./Header.css";
 
 interface HeaderProps {
@@ -51,6 +52,7 @@ export function Header({
               <span>支持新增分类与富文本答案</span>
             </>
           )}
+          <DataManager />
         </div>
         <ViewTabs active={activeView} onChange={onViewChange} />
         {activeView === "jd" && (

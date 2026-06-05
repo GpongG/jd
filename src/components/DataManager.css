@@ -1,0 +1,83 @@
+.data-mgr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  margin-left: auto;
+}
+
+.data-mgr-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.data-mgr-modal {
+  max-width: 420px;
+}
+
+.data-mgr-desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.data-mgr-msg {
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.data-mgr-msg--success {
+  background: rgba(93, 211, 158, 0.12);
+  color: var(--green);
+  border: 1px solid rgba(93, 211, 158, 0.3);
+}
+
+.data-mgr-msg--error {
+  background: rgba(240, 113, 120, 0.12);
+  color: var(--red);
+  border: 1px solid rgba(240, 113, 120, 0.3);
+}
+
+.data-mgr-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.data-mgr-action-btn {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.data-mgr-action-btn:hover {
+  background: var(--bg-hover);
+}
+
+.data-mgr-action-btn--export:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.data-mgr-action-btn--import:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
