@@ -4,7 +4,6 @@ import "react-quill-new/dist/quill.snow.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 import Quill from "quill";
-// @ts-expect-error quill 无类型声明
 import { CodeBlock as SyntaxCodeBlock } from "quill/modules/syntax.js";
 import "./RichTextEditor.css";
 
@@ -80,6 +79,19 @@ export function RichTextEditor({
     return () => clearInterval(timer);
   }, []);
 
+  // 挂载后直接用 innerHTML 设置内容，绕过 clipboard.convert（它会吞掉缩进）
+  useEffect(() => {
+    const html = defaultValueRef.current;
+    if (!html) return;
+    const timer = setInterval(() => {
+      const qlEditor = document.querySelector(".ql-editor") as HTMLElement | null;
+      if (!qlEditor) return;
+      clearInterval(timer);
+      qlEditor.innerHTML = html;
+    }, 50);
+    return () => clearInterval(timer);
+  }, []);
+
   // 包装 onChange，阻止 <select> 和乱码进入 state
   const handleChange = useRef((html: string) => {
     onChange(
@@ -106,7 +118,6 @@ export function RichTextEditor({
     <div className="rich-text-editor" style={{ "--editor-min-h": `${minHeight}px` } as React.CSSProperties}>
       <ReactQuill
         theme="snow"
-        defaultValue={defaultValueRef.current}
         onChange={handleChange}
         modules={modules}
         formats={formats}

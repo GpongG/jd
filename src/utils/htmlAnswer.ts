@@ -73,29 +73,15 @@ function escapeText(s: string): string {
     .replace(/>/g, "&gt;");
 }
 
-/** 加载已保存内容时清理 UI 元素及残留文字 */
+/** 加载已保存内容时清理 UI 元素，保留 .ql-code-block-container 原生结构供 Quill DOM 解析 */
 export function stripQuillUi(html: string): string {
+console.log(html);
+
   if (!html) return html;
 
-  let result = html
+  // 只剥离 <select> 和残留文字，保留代码块原生结构和 data-language
+  return html
     .replace(/<select\b[^>]*>[\s\S]*?<\/select>/gi, "")
     .replace(/<p>\s*JSTSHTMLCSSJSONPythonJavaShell\s*<\/p>/gi, "")
-    .replace(/JSTSHTMLCSSJSONPythonJavaShell/g, "")
-    .replace(/\s+data-language="[^"]*"/gi, "");
-
-  // 将代码块转为 <pre>，让 Quill 保留缩进空白
-  const temp = document.createElement("div");
-  temp.innerHTML = result;
-  temp.querySelectorAll(".ql-code-block-container").forEach((container) => {
-    const lines = Array.from(
-      container.querySelectorAll(".ql-code-block"),
-      (el) => el.textContent ?? "",
-    );
-    const pre = document.createElement("pre");
-    pre.textContent = lines.join("\n");
-    container.replaceWith(pre);
-  });
-  result = temp.innerHTML;
-
-  return result;
+    .replace(/JSTSHTMLCSSJSONPythonJavaShell/g, "");
 }
