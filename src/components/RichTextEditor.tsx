@@ -4,6 +4,8 @@ import "react-quill-new/dist/quill.snow.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 import Quill from "quill";
+// @ts-expect-error quill 无类型声明
+import { CodeBlock as SyntaxCodeBlock } from "quill/modules/syntax.js";
 import "./RichTextEditor.css";
 
 // 确保 Quill 的 Syntax 模块能拿到 hljs
@@ -23,6 +25,13 @@ const CODE_LANGUAGES = [
 // 接管 Syntax 模块的默认语言列表，避免与用户配置按索引合并导致多余选项
 const SyntaxModule = Quill.import("modules/syntax");
 SyntaxModule.DEFAULTS.languages = CODE_LANGUAGES.map((l) => ({ key: l.value, label: l.label }));
+
+// 新代码块默认使用 JS
+// 工具栏点 code-block 时传入 true（非 string），导致 create() 不设 data-language
+const OriginalCreate = SyntaxCodeBlock.create;
+SyntaxCodeBlock.create = (value: unknown) => {
+  return OriginalCreate.call(SyntaxCodeBlock, typeof value === "string" ? value : "js");
+};
 
 interface RichTextEditorProps {
   defaultValue?: string;
