@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { Category, Question } from "../types";
 import { AnswerContent } from "./AnswerContent";
 import { HtmlAnswer } from "./HtmlAnswer";
@@ -31,10 +32,21 @@ export function QuestionCard({
   onEdit,
   onDelete,
 }: QuestionCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
   const category = categories.find((c) => c.id === question.category);
 
+  // 展开时自动将卡片滚动到视口顶部
+  useEffect(() => {
+    if (expanded && cardRef.current) {
+      cardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [expanded]);
+
   return (
-    <article className={`question-card ${expanded ? "expanded" : ""}`}>
+    <article
+      ref={cardRef}
+      className={`question-card ${expanded ? "expanded" : ""}`}
+    >
       <button
         type="button"
         className="question-header"
