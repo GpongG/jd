@@ -22,7 +22,7 @@ const CODE_LANGUAGES = [
 ];
 
 // 接管 Syntax 模块的默认语言列表，避免与用户配置按索引合并导致多余选项
-const SyntaxModule = Quill.import("modules/syntax");
+const SyntaxModule = Quill.import("modules/syntax") as any;
 SyntaxModule.DEFAULTS.languages = CODE_LANGUAGES.map((l) => ({ key: l.value, label: l.label }));
 
 // 新代码块默认使用 JS
