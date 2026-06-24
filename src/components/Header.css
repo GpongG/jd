@@ -54,20 +54,4 @@
   font-size: 1.1rem;
 }
 
-.header--violet {
-  background: linear-gradient(
-    135deg,
-    #141820 0%,
-    #1e1a2e 50%,
-    #12151c 100%
-  );
-}
 
-.header--violet .header-badge {
-  color: var(--accent-violet);
-  background: var(--accent-violet-soft);
-}
-
-.header--violet .header-stats strong {
-  color: var(--accent-violet);
-}

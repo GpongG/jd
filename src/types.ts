@@ -33,8 +33,6 @@ export interface Question {
 /** 题库录入时不带 jdId，汇总时注入 */
 export type QuestionDraft = Omit<Question, "jdId">;
 
-export type AppView = "jd" | "common";
-
 /** 常见面试题分类（独立于 JD） */
 export interface CommonCategory {
   id: string;

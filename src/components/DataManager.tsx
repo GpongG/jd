@@ -4,9 +4,6 @@ import "./DataManager.css";
 
 const STORAGE_KEYS = [
   "interview-common-bank",
-  "interview-question-overrides",
-  "interview-active-jd",
-  "interview-active-view",
 ] as const;
 
 interface ExportData {
