@@ -70,30 +70,26 @@ function SortableQuestionItem({
 
   return (
     <div ref={setNodeRef} style={style} {...attributes}>
-      <div className="sortable-question-wrap">
-        <div className="drag-handle" {...listeners} title="拖拽排序">
-          ⠿
-        </div>
-        <QuestionCard
-          question={{
-            id: question.id,
-            jdId: "h5-senior",
-            category: question.category,
-            title: question.title,
-            difficulty: question.difficulty,
-            tags: question.tags,
-            answer: "",
-            answerHtml: question.answerHtml,
-            keyPoints: question.keyPoints,
-          }}
-          categories={categories}
-          index={index}
-          expanded={expanded}
-          onToggle={onToggle}
-          onEdit={onEdit}
-          onDelete={onDelete}
-        />
-      </div>
+      <QuestionCard
+        question={{
+          id: question.id,
+          jdId: "h5-senior",
+          category: question.category,
+          title: question.title,
+          difficulty: question.difficulty,
+          tags: question.tags,
+          answer: "",
+          answerHtml: question.answerHtml,
+          keyPoints: question.keyPoints,
+        }}
+        categories={categories}
+        index={index}
+        expanded={expanded}
+        onToggle={onToggle}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        dragListeners={listeners}
+      />
     </div>
   );
 }

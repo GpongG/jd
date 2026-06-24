@@ -15,6 +15,7 @@ interface QuestionCardProps {
   onToggle: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
+  dragListeners?: Record<string, any>;
 }
 
 const difficultyClass: Record<string, string> = {
@@ -31,6 +32,7 @@ export function QuestionCard({
   onToggle,
   onEdit,
   onDelete,
+  dragListeners,
 }: QuestionCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const category = categories.find((c) => c.id === question.category);
@@ -52,6 +54,7 @@ export function QuestionCard({
         className="question-header"
         onClick={onToggle}
         aria-expanded={expanded}
+        {...(dragListeners ?? {})}
       >
         <span className="question-index">{index}</span>
         <div className="question-meta">

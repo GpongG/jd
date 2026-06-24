@@ -63,10 +63,7 @@ function SortableCatItem({
 
   return (
     <div ref={setNodeRef} style={style} {...attributes}>
-      <div className={`common-cat-row ${isDragging ? "dragging" : ""}`}>
-        <span className="cat-drag-handle" {...listeners} title="拖拽排序">
-          ⠿
-        </span>
+      <div className={`common-cat-row ${isDragging ? "dragging" : ""}`} {...listeners}>
         <button
           type="button"
           className={`sidebar-item ${active === cat.id ? "active" : ""}`}

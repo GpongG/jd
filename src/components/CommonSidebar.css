@@ -1,31 +1,5 @@
-/* ---- 分类拖拽手柄 ---- */
-.cat-drag-handle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.3rem;
-  cursor: grab;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  user-select: none;
-  opacity: 0;
-  transition: opacity 0.15s;
-  flex-shrink: 0;
-}
-
-.common-cat-row:hover .cat-drag-handle {
-  opacity: 0.6;
-}
-
-.cat-drag-handle:hover {
-  opacity: 1 !important;
-  color: var(--accent);
-}
-
-.cat-drag-handle:active {
-  cursor: grabbing;
-}
-
+.common-cat-row { cursor: grab; }
+.common-cat-row:active { cursor: grabbing; }
 .common-cat-row.dragging {
   background: var(--bg-hover);
   border-radius: 10px;
